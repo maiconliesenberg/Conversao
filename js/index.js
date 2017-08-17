@@ -7,9 +7,9 @@ window.onload=function(){
 
 
 
-function calcular () {
+var calcularV = {
 	
-	function decimalPBinario(){
+	decimalPBinario : function(){
 		var valor = document.getElementById('numero').value;
 		var list = [];
 		do{
@@ -28,9 +28,9 @@ function calcular () {
 		};
 		
 		document.getElementById("tfbinario").value = resp;
-	}
+	},
 	
-	function decimalPoctal (){
+	decimalPoctal : function (){
 		var valor = document.getElementById('numero').value;
 		var list = [];
 		do{
@@ -43,9 +43,9 @@ function calcular () {
 			resp += list[i]+'';
 		};
 		document.getElementById("tfoctal").value = resp;
-	}
+	},
 	
-	function decimalPHexadecimal(){
+	decimalPHexadecimal : function(){
 		var valor = document.getElementById('numero').value;
 		var list = [];
 		do{
@@ -75,14 +75,16 @@ function calcular () {
 		};
 		document.getElementById("tfhexa").value = resp;
 	}
-	
-	decimalPHexadecimal();
-	decimalPBinario();
-	decimalPoctal();
 }
 
-function calcularBinario () {
-	function binarioPdecimal (){
+function calcular(){
+	calcularV.decimalPHexadecimal();
+	calcularV.decimalPBinario();
+	calcularV.decimalPoctal();
+}
+
+var calcularBinarioV = {
+	binarioPdecimal : function(){
 		var valor = document.getElementById('tfbinario').value;
 		var list = [];
 		valor = valor.split("");
@@ -100,9 +102,9 @@ function calcularBinario () {
 			}
 		}
 		document.getElementById("numero").value = respFinal;
-	}
+	},
 
-	function binarioPhexa (){
+	binarioPhexa : function(){
 		var valor = document.getElementById('tfbinario').value;
 		var valorSplit = valor.split('').reverse().join('');
 	
@@ -152,9 +154,9 @@ function calcularBinario () {
 		}
 
 		document.getElementById("tfhexa").value = resul.split('').reverse().join('');
-	}
+	},
 
-	function binarioPoctal (){
+	binarioPoctal : function(){
 		var valor = document.getElementById('tfbinario').value;
 		var valorSplit = valor.split('').reverse().join('');
 	
@@ -188,14 +190,16 @@ function calcularBinario () {
 		document.getElementById("tfoctal").value = list.join("");
 		
 	}
-
-	binarioPdecimal();
-	binarioPhexa();
-	binarioPoctal();
 }
 
-function calcularHexadecimal(){
-	function hexaPdeci(){
+function calcularBinario(){
+	calcularBinarioV.binarioPdecimal();
+	calcularBinarioV.binarioPhexa();
+	calcularBinarioV.binarioPoctal();
+}
+
+var calcularHexadecimalV = {
+	hexaPdeci : function(){
 		var valor = document.getElementById('tfhexa').value;
 		valor = valor.split("");
 		var soma = 0;
@@ -219,9 +223,10 @@ function calcularHexadecimal(){
 			aux--;
 		}
 		document.getElementById("numero").value = soma;
-	}
-	var list = [];
-	function hexaPbinario(){
+	},
+	
+	hexaPbinario : function(){
+		var list = [];
 		var valor = document.getElementById('tfhexa').value;
 		valor = valor.split("");
 		
@@ -259,7 +264,15 @@ function calcularHexadecimal(){
 			te = te.split('').reverse().join('');
 			list.push(te);
 		}
+	},
+
+	hexaPoctal : function(){
+		calcularBinarioV.binarioPoctal();
 	}
-	hexaPdeci();
-	hexaPbinario();
+}
+
+function calcularHexadecimal(){
+	calcularHexadecimalV.hexaPdeci();
+	calcularHexadecimalV.hexaPbinario();
+	calcularHexadecimalV.hexaPoctal();
 }

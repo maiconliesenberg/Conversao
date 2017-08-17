@@ -103,114 +103,54 @@ function calcularBinario () {
 
 	function binarioPhexa (){
 		var valor = document.getElementById('tfbinario').value;
-		
-		//valor = valor.match(/.{1,4}/g);
-		/*
-		var test = valor.split('').reverse().join('');
-		test = test.match(/.{1,4}/g);
-		console.log(test);
-		console.log(test[test.length - 1].length);
-		if(test[test.length - 1].length < 4){
+		var valorSplit = valor.split('').reverse().join('');
+	
+		valorSplit = valorSplit.match(/.{1,4}/g);
+	
+		if(valorSplit[valorSplit.length - 1].length < 4){
 			do{
-				test[test.length - 1] += "0";
-				console.log(test[test.length - 1]);
-			}while(test[test.length - 1].length < 4);
-		}
-		*/
-/*
-		console.log(test);
-		for(var i = 0; i < test.length; i++){
-			test[i] = test[i].split('').reverse().join('');
-			
-		}
-*/
-		//console.log(test);
-		
-		/*
-		
-		var list = [];
-		for(var i = valor.length - 1; i >= 0; i--){
-			list.push(valor[i]);
-			
-		}
-		
-		//console.log(list);
-*/
-		var tt = valor.split('').reverse().join('');
-		/*
-		for(var i = 0; i < list.length; i++){
-			tt += list[i];
-		}
-		//console.log(tt.match(/.{1,4}/g));
-		*/
-		tt = tt.match(/.{1,4}/g);
-		//valor = list;
-		//valor = valor.match(/.{1,4}/g);
-		//console.log(valor);
-		//var ultima = list[0];
-		if(tt[tt.length - 1].length < 4){
-			do{
-				tt[tt.length -1] += "0";
-			}while(tt[tt.length - 1].length < 4);
+				valorSplit[valorSplit.length -1] += "0";
+			}while(valorSplit[valorSplit.length - 1].length < 4);
 		}
 		var resul = "";
-		for(var i = 0; i < tt.length; i++){
-			tt[i] = tt[i].split('').reverse().join('');
-			if(tt[i] == '0000'){
+		for(var i = 0; i < valorSplit.length; i++){
+			valorSplit[i] = valorSplit[i].split('').reverse().join('');
+			if(valorSplit[i] == '0000'){
 				resul += " 0";
-			}else if(tt[i] == '0001'){
+			}else if(valorSplit[i] == '0001'){
 				resul += " 1";
-			}else if(tt[i] == '0010'){
+			}else if(valorSplit[i] == '0010'){
 				resul += " 2";
-			}else if(tt[i] == '0011'){
+			}else if(valorSplit[i] == '0011'){
 				resul += " 3";
-			}else if(tt[i] == '0100'){
+			}else if(valorSplit[i] == '0100'){
 				resul += " 4";
-			}else if(tt[i] == '0101'){
+			}else if(valorSplit[i] == '0101'){
 				resul += " 5";
-			}else if(tt[i] == '0110'){
+			}else if(valorSplit[i] == '0110'){
 				resul += " 6";
-			}else if(tt[i] == '0111'){
+			}else if(valorSplit[i] == '0111'){
 				resul += " 7";
-			}else if(tt[i] == '1000'){
+			}else if(valorSplit[i] == '1000'){
 				resul += " 8";
-			}else if(tt[i] == '1001'){
+			}else if(valorSplit[i] == '1001'){
 				resul += " 9";
-			}else if(tt[i] == '1010'){
+			}else if(valorSplit[i] == '1010'){
 				resul += " A";
-			}else if(tt[i] == '1011'){
+			}else if(valorSplit[i] == '1011'){
 				resul += " B";
-			}else if(tt[i] == '1100'){
+			}else if(valorSplit[i] == '1100'){
 				resul += " C";
-			}else if(tt[i] == '1101'){
+			}else if(valorSplit[i] == '1101'){
 				resul += " D";
-			}else if(tt[i] == '1110'){
+			}else if(valorSplit[i] == '1110'){
 				resul += " E";
-			}else if(tt[i] == '1111'){
+			}else if(valorSplit[i] == '1111'){
 				resul += " F";
 			}
 		}
 
 		document.getElementById("tfhexa").value = resul.split('').reverse().join('');
-/*
-		var z = "";
-		var inv = [];
-		for(var i = 0; i < tt.length; i++){
-			console.log(tt[i]);
-			inv.push(tt[i]);
-			inv.split();
-			inv.reverse();
-			inv.pop();
-
-		console.log(inv);
-		}
-		//inv.reverse();
-		
-
-
-		//console.log(valor[valor.length - 1]);
-		
-		*/
 	}
 	binarioPdecimal();
 	binarioPhexa();

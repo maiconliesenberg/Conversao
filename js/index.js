@@ -153,13 +153,45 @@ function calcularBinario () {
 				tt[tt.length -1] += "0";
 			}while(tt[tt.length - 1].length < 4);
 		}
-
+		var resul = "";
 		for(var i = 0; i < tt.length; i++){
 			tt[i] = tt[i].split('').reverse().join('');
-			
+			if(tt[i] == '0000'){
+				resul += " 0";
+			}else if(tt[i] == '0001'){
+				resul += " 1";
+			}else if(tt[i] == '0010'){
+				resul += " 2";
+			}else if(tt[i] == '0011'){
+				resul += " 3";
+			}else if(tt[i] == '0100'){
+				resul += " 4";
+			}else if(tt[i] == '0101'){
+				resul += " 5";
+			}else if(tt[i] == '0110'){
+				resul += " 6";
+			}else if(tt[i] == '0111'){
+				resul += " 7";
+			}else if(tt[i] == '1000'){
+				resul += " 8";
+			}else if(tt[i] == '1001'){
+				resul += " 9";
+			}else if(tt[i] == '1010'){
+				resul += " A";
+			}else if(tt[i] == '1011'){
+				resul += " B";
+			}else if(tt[i] == '1100'){
+				resul += " C";
+			}else if(tt[i] == '1101'){
+				resul += " D";
+			}else if(tt[i] == '1110'){
+				resul += " E";
+			}else if(tt[i] == '1111'){
+				resul += " F";
+			}
 		}
 
-		console.log(tt);
+		document.getElementById("tfhexa").value = resul.split('').reverse().join('');
 /*
 		var z = "";
 		var inv = [];

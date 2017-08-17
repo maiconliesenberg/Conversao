@@ -12,7 +12,7 @@ function calcular () {
 	function decimalPBinario(){
 		var valor = document.getElementById('numero').value;
 		var list = [];
-			do{
+		do{
 			if(valor % 2 == 1){
 				list.push('1')
 				valor = Math.trunc(valor / 2);
@@ -198,25 +198,68 @@ function calcularHexadecimal(){
 	function hexaPdeci(){
 		var valor = document.getElementById('tfhexa').value;
 		valor = valor.split("");
-		console.log(valor);
 		var soma = 0;
+		var aux = valor.length-1;
 		for(var i = 0; i < valor.length; i++){
 			if(valor[i].toUpperCase() == 'A'){
-
+				soma += Math.pow(16,aux) * 10;
 			}else if(valor[i].toUpperCase() == 'B'){
-				soma += Math.Pow(16,i) * 11;
+				soma += Math.pow(16,aux) * 11;
 			}else if(valor[i].toUpperCase() == 'C'){
-				soma += Math.Pow(16,i) * 12;
+				soma += Math.pow(16,aux) * 12;
 			}else if(valor[i].toUpperCase() == 'D'){
-				soma += Math.Pow(16,i) * 13;
+				soma += Math.pow(16,aux) * 13;
 			}else if(valor[i].toUpperCase() == 'E'){
-				soma += Math.Pow(16,i) * 14;
+				soma += Math.pow(16,aux) * 14;
 			}else if(valor[i].toUpperCase() == 'F'){
-				soma += Math.Pow(16,i) * 15;
+				soma += Math.pow(16,aux) * 15;
 			}else{
-				
+				soma += Math.pow(16,aux) * valor[i];
 			}
+			aux--;
+		}
+		document.getElementById("numero").value = soma;
+	}
+	var list = [];
+	function hexaPbinario(){
+		var valor = document.getElementById('tfhexa').value;
+		valor = valor.split("");
+		
+		for(var i = 0; i < valor.length; i++){
+			if(valor[i].toUpperCase() == 'A'){
+				resto(10);
+			}else if(valor[i].toUpperCase() == 'B'){
+				resto(11);
+			}else if(valor[i].toUpperCase() == 'C'){
+				resto(12);
+			}else if(valor[i].toUpperCase() == 'D'){
+				resto(13);
+			}else if(valor[i].toUpperCase() == 'E'){
+				resto(14);
+			}else if(valor[i].toUpperCase() == 'F'){
+				resto(15);
+			}else{
+				resto(valor[i]);
+			}
+		}
+
+		document.getElementById("tfbinario").value = list.join("");
+		
+		function resto(valor){
+			var te = '';
+			do{
+				if(valor % 2 == 1){
+					te += '1';
+					valor = Math.trunc(valor / 2);
+				}else if(valor % 2 == 0){
+					te += '0';
+					valor = Math.trunc(valor / 2);
+				}
+			}while(valor > 0);
+			te = te.split('').reverse().join('');
+			list.push(te);
 		}
 	}
 	hexaPdeci();
+	hexaPbinario();
 }

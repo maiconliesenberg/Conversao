@@ -2,6 +2,7 @@ var a;
 window.onload=function(){
 	document.getElementById("numero").addEventListener("keyup", calcular);
 	document.getElementById("tfbinario").addEventListener("keyup", calcularBinario);
+	document.getElementById("tfhexa").addEventListener("keyup", calcularHexadecimal);
 }
 
 
@@ -23,7 +24,7 @@ function calcular () {
 		list.reverse();
 		var resp= '';
 		for (var i = 0; i <= list.length - 1; i++) {
-			resp += list[i]+' ';
+			resp += list[i]+'';
 		};
 		
 		document.getElementById("tfbinario").value = resp;
@@ -39,7 +40,7 @@ function calcular () {
 		list.reverse();
 		var resp= '';
 		for (var i = 0; i <= list.length - 1; i++) {
-			resp += list[i]+' ';
+			resp += list[i]+'';
 		};
 		document.getElementById("tfoctal").value = resp;
 	}
@@ -56,20 +57,20 @@ function calcular () {
 		for (var i = 0; i <= list.length - 1; i++) {
 			if(list[i] > 9){
 				if(list[i] == 10){
-					resp += ' A';
+					resp += 'A';
 				}else if(list[i] == 11){
-					resp += ' B';
+					resp += 'B';
 				}else if(list[i] == 12){
-					resp += ' C';
+					resp += 'C';
 				}else if(list[i] == 13){
-					resp += ' D';
+					resp += 'D';
 				}else if(list[i] == 14){
-					resp += ' E';
+					resp += 'E';
 				}else if(list[i] == 15){
-					resp += ' F';
+					resp += 'F';
 				}
 			}else{
-				resp += list[i]+' ';
+				resp += list[i]+'';
 			}
 		};
 		document.getElementById("tfhexa").value = resp;
@@ -116,43 +117,106 @@ function calcularBinario () {
 		for(var i = 0; i < valorSplit.length; i++){
 			valorSplit[i] = valorSplit[i].split('').reverse().join('');
 			if(valorSplit[i] == '0000'){
-				resul += " 0";
+				resul += "0";
 			}else if(valorSplit[i] == '0001'){
-				resul += " 1";
+				resul += "1";
 			}else if(valorSplit[i] == '0010'){
-				resul += " 2";
+				resul += "2";
 			}else if(valorSplit[i] == '0011'){
-				resul += " 3";
+				resul += "3";
 			}else if(valorSplit[i] == '0100'){
-				resul += " 4";
+				resul += "4";
 			}else if(valorSplit[i] == '0101'){
-				resul += " 5";
+				resul += "5";
 			}else if(valorSplit[i] == '0110'){
-				resul += " 6";
+				resul += "6";
 			}else if(valorSplit[i] == '0111'){
-				resul += " 7";
+				resul += "7";
 			}else if(valorSplit[i] == '1000'){
-				resul += " 8";
+				resul += "8";
 			}else if(valorSplit[i] == '1001'){
-				resul += " 9";
+				resul += "9";
 			}else if(valorSplit[i] == '1010'){
-				resul += " A";
+				resul += "A";
 			}else if(valorSplit[i] == '1011'){
-				resul += " B";
+				resul += "B";
 			}else if(valorSplit[i] == '1100'){
-				resul += " C";
+				resul += "C";
 			}else if(valorSplit[i] == '1101'){
-				resul += " D";
+				resul += "D";
 			}else if(valorSplit[i] == '1110'){
-				resul += " E";
+				resul += "E";
 			}else if(valorSplit[i] == '1111'){
-				resul += " F";
+				resul += "F";
 			}
 		}
 
 		document.getElementById("tfhexa").value = resul.split('').reverse().join('');
 	}
+
+	function binarioPoctal (){
+		var valor = document.getElementById('tfbinario').value;
+		var valorSplit = valor.split('').reverse().join('');
+	
+		valorSplit = valorSplit.match(/.{1,3}/g);
+		
+		if(valorSplit[valorSplit.length - 1].length < 3){
+			do{
+				valorSplit[valorSplit.length -1] += "0";
+			}while(valorSplit[valorSplit.length - 1].length < 3);
+		}
+		var list = [];
+		var soma = 0;
+		for(var i = 0; i < valorSplit.length; i++){
+			valorSplit[i] = valorSplit[i].split('').reverse().join('');
+			if(valorSplit[i] != '000'){
+				soma = 0;
+				if(valorSplit[i].charAt(0) == '1'){
+					soma += 4;
+				}
+				if(valorSplit[i].charAt(1) == '1'){
+					soma += 2;
+				}
+				if(valorSplit[i].charAt(2) == '1'){
+					soma += 1;
+				}
+			}
+			
+			list.push(soma);
+		}
+		list.reverse();
+		document.getElementById("tfoctal").value = list.join("");
+		
+	}
+
 	binarioPdecimal();
 	binarioPhexa();
+	binarioPoctal();
 }
 
+function calcularHexadecimal(){
+	function hexaPdeci(){
+		var valor = document.getElementById('tfhexa').value;
+		valor = valor.split("");
+		console.log(valor);
+		var soma = 0;
+		for(var i = 0; i < valor.length; i++){
+			if(valor[i].toUpperCase() == 'A'){
+
+			}else if(valor[i].toUpperCase() == 'B'){
+				soma += Math.Pow(16,i) * 11;
+			}else if(valor[i].toUpperCase() == 'C'){
+				soma += Math.Pow(16,i) * 12;
+			}else if(valor[i].toUpperCase() == 'D'){
+				soma += Math.Pow(16,i) * 13;
+			}else if(valor[i].toUpperCase() == 'E'){
+				soma += Math.Pow(16,i) * 14;
+			}else if(valor[i].toUpperCase() == 'F'){
+				soma += Math.Pow(16,i) * 15;
+			}else{
+				
+			}
+		}
+	}
+	hexaPdeci();
+}

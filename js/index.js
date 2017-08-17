@@ -3,6 +3,7 @@ window.onload=function(){
 	document.getElementById("numero").addEventListener("keyup", calcular);
 	document.getElementById("tfbinario").addEventListener("keyup", calcularBinario);
 	document.getElementById("tfhexa").addEventListener("keyup", calcularHexadecimal);
+	document.getElementById("tfoctal").addEventListener("keyup", calcularOctal);
 }
 
 
@@ -276,3 +277,21 @@ function calcularHexadecimal(){
 	calcularHexadecimalV.hexaPbinario();
 	calcularHexadecimalV.hexaPoctal();
 }
+var calcularOctalV = {
+	octalPdecimal : function(){
+		var valor = document.getElementById('tfoctal').value;
+		valor = valor.split("");
+		var soma = 0;
+		var aux = valor.length-1;
+		for(var i = 0; i < valor.length; i++){
+			soma += Math.pow(8,aux) * valor[i];
+			aux--;
+		}
+		document.getElementById("numero").value = soma;
+	}
+}
+
+function calcularOctal(){
+	calcularOctalV.octalPdecimal();
+}
+

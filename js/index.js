@@ -1,9 +1,24 @@
 var a;
 window.onload=function(){
-	document.getElementById("numero").addEventListener("keyup", calcular);
-	document.getElementById("tfbinario").addEventListener("keyup", calcularBinario);
-	document.getElementById("tfhexa").addEventListener("keyup", calcularHexadecimal);
-	document.getElementById("tfoctal").addEventListener("keyup", calcularOctal);
+	document.getElementById("numero").addEventListener("input", calcular);
+	document.getElementById("tfbinario").addEventListener("input", calcularBinario);
+	document.getElementById("tfhexa").addEventListener("input", calcularHexadecimal);
+	document.getElementById("tfoctal").addEventListener("input", calcularOctal);
+	
+	document.querySelectorAll('input').forEach((input)=>{
+		input.addEventListener('input', (e)=>{
+			limparCamposCasoVazio(e.target);
+		}, false);
+	});
+	
+	const limparCamposCasoVazio = (input)=>{
+	if(input.value==""){
+		document.querySelectorAll('input').forEach((input)=>{
+			input.value = "";
+		});
+	}
+}
+
 }
 
 
@@ -79,9 +94,11 @@ var calcularV = {
 }
 
 function calcular(){
-	calcularV.decimalPHexadecimal();
-	calcularV.decimalPBinario();
-	calcularV.decimalPoctal();
+	if(document.getElementById("numero").value != ""){
+		calcularV.decimalPHexadecimal();
+		calcularV.decimalPBinario();
+		calcularV.decimalPoctal();
+	}
 }
 
 var calcularBinarioV = {
@@ -194,9 +211,12 @@ var calcularBinarioV = {
 }
 
 function calcularBinario(){
-	calcularBinarioV.binarioPdecimal();
-	calcularBinarioV.binarioPhexa();
-	calcularBinarioV.binarioPoctal();
+	if(document.getElementById("tfbinario").value != ""){
+		calcularBinarioV.binarioPdecimal();
+		calcularBinarioV.binarioPhexa();
+		calcularBinarioV.binarioPoctal();
+	}
+	
 }
 
 var calcularHexadecimalV = {
@@ -273,9 +293,11 @@ var calcularHexadecimalV = {
 }
 
 function calcularHexadecimal(){
-	calcularHexadecimalV.hexaPdeci();
-	calcularHexadecimalV.hexaPbinario();
-	calcularHexadecimalV.hexaPoctal();
+	if(document.getElementById("tfhexa").value != ""){
+		calcularHexadecimalV.hexaPdeci();
+		calcularHexadecimalV.hexaPbinario();
+		calcularHexadecimalV.hexaPoctal();
+	}
 }
 var calcularOctalV = {
 	octalPdecimal : function(){
@@ -339,8 +361,10 @@ var calcularOctalV = {
 }
 
 function calcularOctal(){
-	calcularOctalV.octalPdecimal();
-	calcularOctalV.octalPbinario();
-	calcularOctalV.octalPhexa();
+	if(document.getElementById("tfoctal").value != ""){
+		calcularOctalV.octalPdecimal();
+		calcularOctalV.octalPbinario();
+		calcularOctalV.octalPhexa();
+	}
 }
 

@@ -292,51 +292,55 @@ var calcularOctalV = {
 	
 
 	octalPbinario : function(){
-	var valor = document.getElementById('tfoctal').value;
-	var list = [];
-	var soma = '';
-	valor = valor.split('');
-	var aux = '';
-	for(var i = 0; i < valor.length; i++){
-		
-		do{
-			if(valor[i] % 2 == 1){
-				aux += '1';
-				valor[i] = Math.trunc(valor[i] / 2);
-			}else if(valor[i] % 2 == 0){
+		var valor = document.getElementById('tfoctal').value;
+		var list = [];
+		var soma = '';
+		valor = valor.split('');
+		var aux = '';
+		for(var i = 0; i < valor.length; i++){
+			
+			do{
+				if(valor[i] % 2 == 1){
+					aux += '1';
+					valor[i] = Math.trunc(valor[i] / 2);
+				}else if(valor[i] % 2 == 0){
+					aux += '0';
+					valor[i] = Math.trunc(valor[i] / 2);
+				}
+				
+			}while(valor[i] > 0);
+			
+			while(aux.length < 3){
 				aux += '0';
-				valor[i] = Math.trunc(valor[i] / 2);
 			}
 			
-		}while(valor[i] > 0);
-		
-		while(aux.length < 3){
-			aux += '0';
+			aux = aux.split('').reverse().join('');
+			
+			list.push(aux);
+			soma += aux;
+			aux = '';
 		}
+		console.log(soma);
 		
-		aux = aux.split('').reverse().join('');
-		
-		list.push(aux);
-		soma += aux;
-		aux = '';
-	}
-	console.log(soma);
+		soma = soma.split('');
+		var j = 0;
+		while(soma[j] == '0'){
+			soma[j] = '';
+			j++;
+		}
+		soma = soma.join('');
+		console.log(soma);
+		document.getElementById("tfbinario").value = soma;
+	},
 	
-	soma = soma.split('');
-	var j = 0;
-	while(soma[j] == '0'){
-		soma[j] = '';
-		j++;
-	}
-	soma = soma.join('');
-	console.log(soma);
-	document.getElementById("tfbinario").value = soma;
+	octalPhexa : function(){
+		calcularBinarioV.binarioPhexa();
 	}
 }
 
 function calcularOctal(){
 	calcularOctalV.octalPdecimal();
 	calcularOctalV.octalPbinario();
-	
+	calcularOctalV.octalPhexa();
 }
 
